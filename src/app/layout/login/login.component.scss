@@ -1,1 +1,43 @@
-.login-form-container {}
+.login-form-container {
+    background: linear-gradient(rgb(253, 233, 242) 0%, rgb(253, 240, 232) 100%, rgb(253, 240, 232) 100%);
+
+    .login-form-main {
+        width: 430px;
+        border-radius: 8px;
+        border: 1px solid rgb(234, 234, 242);
+
+        .login-form-banner {
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+            height: 200px;
+            width: 100%;
+        }
+
+        .form {
+            padding: 48px 48px;
+
+            .login-form-header {
+                color: rgb(53, 53, 67);
+                font-weight: 500;
+                font-size: 20px;
+            }
+
+            .form-label {
+                font-weight: 500;
+            }
+
+            .login-form-mobile-number-input {
+                border: 1px solid rgb(206, 206, 222);
+                border-radius: 3px;
+            }
+
+            .login-custom-button {
+                background-color: rgb(159, 32, 137);
+                font-weight: 500;
+                font-size: 18px;
+                margin-top: 20px;
+                border-radius: 4px;
+            }
+        }
+    }
+}

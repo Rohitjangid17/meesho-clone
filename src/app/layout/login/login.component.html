@@ -1,28 +1,25 @@
-<div class="d-flex justify-content-center align-items-center h-100"
-    style="background: linear-gradient(rgb(253, 233, 242) 0%, rgb(253, 240, 232) 100%, rgb(253, 240, 232) 100%);">
-    <div class="bg-white shadow-sm" style="width: 430px; border-radius: 8px; border: 1px solid rgb(234, 234, 242);">
+<div class="d-flex justify-content-center align-items-center h-100 login-form-container">
+    <div class="bg-white shadow-sm login-form-main">
         <div>
-            <img style="border-top-left-radius: 8px; border-top-right-radius: 8px; height: 200px; width: 100%;"
-                src="../../../assets/images/login-form-image/meesho-login-form-banner.webp"
-                class="img-fluid object-fit-cover" alt="no-image" />
+            <img src="../../../assets/images/login-form-image/meesho-login-form-banner.webp"
+                class="img-fluid object-fit-cover login-form-banner" alt="no-image" />
         </div>
 
-        <form class="" style="padding: 48px 48px;">
+        <form class="form">
             <!-- login form heading -->
             <div>
-                <h6 class="mb-2" style="color: rgb(53, 53, 67); font-weight: 500; font-size: 20px;">
+                <h6 class="mb-2 login-form-header">
                     Sign Up to view your profile
                 </h6>
             </div>
             <!-- login phonenumber input  -->
             <div class="form-group mt-4">
-                <label style="font-weight: 500;">Mobile Number</label>
-                <input type="text" name="number" style="border: 1px solid rgb(206, 206, 222); border-radius: 3px"
-                    placeholder="Enter your mobile number" class="form-control shadow-none bg-white mt-2">
+                <label class="form-label">Mobile Number</label>
+                <input type="text" name="number" placeholder="Enter your mobile number"
+                    class="form-control shadow-none bg-white login-form-mobile-number-input">
             </div>
 
-            <button type="button" class="btn text-white w-100"
-                style="background-color: rgb(159, 32, 137); font-weight: 500; font-size: 18px; margin-top: 20px; border-radius: 4px;">Continue</button>
+            <button type="button" class="btn text-white w-100 login-custom-button">Continue</button>
         </form>
     </div>
 </div>
