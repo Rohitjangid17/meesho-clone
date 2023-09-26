@@ -1,0 +1,39 @@
+.footer {
+    border: 2px solid rebeccapurple;
+}
+
+.footer_brand_image {
+    height: 40px;
+}
+
+.footer_header {
+    color: #FB399E;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.footer_list_items {
+    list-style: none;
+    padding: 3px 0px;
+}
+
+.footer_list_item {
+    text-decoration: none;
+    color: rgb(53, 53, 67);
+    font-size: 15px;
+}
+
+.social_media_icon_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+    border-top: 1px solid gray;
+}
+
+.social_media_icon {
+    height: 30px;
+    width: 30px;
+}
