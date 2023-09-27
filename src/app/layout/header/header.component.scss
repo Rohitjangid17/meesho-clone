@@ -1,3 +1,9 @@
+.main_container {
+    background-color: white;
+    position: sticky;
+    top: 0;
+}
+
 .navbar_brand_image {
     height: 40px;
 }
@@ -5,6 +11,7 @@
 .navbar_link_item {
     color: rgb(159, 32, 137);
     font-weight: 500;
+    font-size: 16px;
 }
 
 .navbar-toggler {
