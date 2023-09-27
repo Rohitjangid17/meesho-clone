@@ -16,7 +16,7 @@ import { AuthModule } from './shared/auth/auth.module';
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    AuthComponent
+    AuthComponent,
   ],
   imports: [
     BrowserModule,
