@@ -2,10 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  // home page default router 
-  {
-    path: "", redirectTo: "home", pathMatch: "full"
-  },
   // home page router
   {
     path: "home", loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule)
@@ -17,6 +13,10 @@ const routes: Routes = [
   // category page router
   {
     path: "category", loadChildren: () => import('./modules/category/category.module').then(m => m.CategoryModule)
+  },
+  // signin page default router 
+  {
+    path: "", redirectTo: "signin", pathMatch: "full"
   },
   // auth page router
   {
