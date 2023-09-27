@@ -18,6 +18,10 @@ const routes: Routes = [
   {
     path: "category", loadChildren: () => import('./modules/category/category.module').then(m => m.CategoryModule)
   },
+  // auth page router
+  {
+    path: "signin", loadChildren: () => import('./shared/auth/auth.module').then(m => m.AuthModule)
+  },
 ];
 
 @NgModule({

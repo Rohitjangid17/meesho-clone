@@ -8,23 +8,19 @@ import { MatInputModule } from '@angular/material/input';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './layout/header/header.component';
 import { FooterComponent } from './layout/footer/footer.component';
-import { AuthComponent } from './shared/auth/auth.component';
-import { AuthModule } from './shared/auth/auth.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    FooterComponent,
-    AuthComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatFormFieldModule,
-    MatInputModule,
-    AuthModule
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]

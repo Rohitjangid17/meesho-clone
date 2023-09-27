@@ -1,12 +1,13 @@
 import { NgModule } from "@angular/core";
-
+import { AuthRoutingModule } from "./auth-routing.module";
+import { AuthComponent } from "./auth.component";
 
 @NgModule({
     declarations: [
-        // Declare components, directives, and pipes specific to this module
+        AuthComponent
     ],
     imports: [
-        // Import other modules that this module depends on (e.g., CommonModule, FormsModule)
+        AuthRoutingModule
     ],
     providers: [
         // Provide services specific to this module
