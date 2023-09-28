@@ -10,7 +10,7 @@
 
                     <!-- signup form start here -->
                     <ng-container *ngIf="!formScreen">
-                        <form class="form">
+                        <form class="form" [formGroup]="signupForm" (ngSubmit)="signup()">
                             <!-- signup form heading -->
                             <div>
                                 <h6 class="mb-4 text-center login-form-header">
@@ -20,22 +20,30 @@
                             <!-- signup email form field  -->
                             <mat-form-field class="form-group w-100" appearance="outline">
                                 <mat-label>Email</mat-label>
-                                <input type="text" name="email" placeholder="Enter your email" matInput />
+                                <input type="text" name="email" formControlName="email" placeholder="Enter your email"
+                                    matInput />
                             </mat-form-field>
+
                             <!-- signup mobile number form field  -->
                             <mat-form-field class="form-group w-100" appearance="outline">
                                 <mat-label>Mobile Number</mat-label>
-                                <input type="text" name="mobileNumber" placeholder="Enter your mobile number"
-                                    matInput />
+                                <input type="text" name="mobileNumber" formControlName="mobileNumber"
+                                    placeholder="Enter your mobile number" matInput />
                             </mat-form-field>
+
                             <!-- signup password form field  -->
                             <mat-form-field class="form-group w-100" appearance="outline">
                                 <mat-label>Password</mat-label>
-                                <input type="password" name="password" placeholder="Enter your password" matInput />
+                                <input [type]="isSignupPassword ? 'text' : 'password'" name="password"
+                                    formControlName="password" placeholder="Enter your password" matInput />
+                                <mat-icon (click)="toggleSignupPassword()" style="cursor: pointer;" matSuffix>
+                                    {{isSignupPassword ? 'visibility_off' : 'visibility'}}
+                                </mat-icon>
                             </mat-form-field>
 
                             <!-- signup button -->
-                            <button class="btn text-white w-100 login-custom-button" mat-raised-button>Signup</button>
+                            <button class="btn text-white w-100 login-custom-button" type="submit"
+                                [disabled]="signupForm.invalid" mat-raised-button>Signup</button>
 
                             <a class="auth-toggle-url" (click)="authToggleScreen()">Already have account? Click
                                 to login</a>
@@ -45,7 +53,7 @@
 
                     <!-- login form start here -->
                     <ng-container *ngIf="formScreen">
-                        <form class="form">
+                        <form class="form" [formGroup]="loginForm" (ngSubmit)="login()">
                             <!-- login form heading -->
                             <div>
                                 <h6 class="mb-4 text-center login-form-header">
@@ -56,18 +64,23 @@
                             <!-- login mobile number form field  -->
                             <mat-form-field class="form-group w-100" appearance="outline">
                                 <mat-label>Mobile Number</mat-label>
-                                <input type="text" name="mobileNumber" placeholder="Enter your mobile number"
-                                    matInput />
+                                <input type="text" name="mobileNumber" formControlName="mobileNumber"
+                                    placeholder="Enter your mobile number" matInput />
                             </mat-form-field>
 
                             <!-- login password form field  -->
                             <mat-form-field class="form-group w-100" appearance="outline">
                                 <mat-label>Password</mat-label>
-                                <input type="password" name="password" placeholder="Enter your password" matInput />
+                                <input [type]="isLoginPassword ? 'text' : 'password'" name="password"
+                                    formControlName="password" placeholder="Enter your password" matInput />
+                                <mat-icon (click)="toggleLoginPassword()" style="cursor: pointer;" matSuffix>
+                                    {{isLoginPassword ? 'visibility_off' : 'visibility'}}
+                                </mat-icon>
                             </mat-form-field>
 
                             <!-- login button -->
-                            <button class="btn text-white w-100 login-custom-button" mat-raised-button>Login</button>
+                            <button class="btn text-white w-100 login-custom-button" [disabled]="loginForm.invalid"
+                                mat-raised-button>Login</button>
 
                             <a class="auth-toggle-url" (click)="authToggleScreen()">Don't have account? Click to
                                 signup</a>
