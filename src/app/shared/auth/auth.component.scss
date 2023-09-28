@@ -1,10 +1,10 @@
 .login-form-container {
-    background: linear-gradient(rgb(253, 233, 242) 0%, rgb(253, 240, 232) 100%, rgb(253, 240, 232) 100%);
+    background-color: white;
 
     .login-form-main {
         width: 430px;
         border-radius: 8px;
-        border: 1px solid rgb(234, 234, 242);
+        border: 1px solid #ddd;
 
         .login-form-banner {
             border-top-left-radius: 8px;
@@ -14,7 +14,7 @@
         }
 
         .form {
-            padding: 48px 48px;
+            padding: 34px 34px;
 
             .login-form-header {
                 color: rgb(53, 53, 67);
@@ -22,21 +22,22 @@
                 font-size: 20px;
             }
 
-            .form-label {
-                font-weight: 500;
-            }
-
-            .login-form-mobile-number-input {
-                border: 1px solid rgb(206, 206, 222);
-                border-radius: 3px;
-            }
-
             .login-custom-button {
                 background-color: rgb(159, 32, 137);
                 font-weight: 500;
                 font-size: 18px;
-                margin-top: 20px;
                 border-radius: 4px;
+                padding: 8px 0;
+            }
+
+            .auth-toggle-url {
+                color: rgb(159, 32, 137);
+                text-decoration: none;
+                text-align: center;
+                display: block;
+                margin-top: 6px;
+                font-size: 14px;
+                cursor: pointer;
             }
         }
     }

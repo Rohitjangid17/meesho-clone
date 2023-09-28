@@ -1,25 +1,81 @@
-<div class="d-flex justify-content-center align-items-center h-100 login-form-container">
-    <div class="bg-white shadow-sm login-form-main">
-        <div>
-            <img src="../../../assets/images/login-form-image/meesho-login-form-banner.webp"
-                class="img-fluid object-fit-cover login-form-banner" alt="no-image" />
+<div class="container-fluid p-0 overflow-hidden">
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex justify-content-center align-items-center login-form-container py-5">
+                <div class="bg-white shadow-sm login-form-main">
+                    <div>
+                        <img src="../../../assets/images/login-form-image/meesho-login-form-banner.webp"
+                            class="img-fluid object-fit-cover login-form-banner" alt="no-image" />
+                    </div>
+
+                    <!-- signup form start here -->
+                    <ng-container *ngIf="!formScreen">
+                        <form class="form">
+                            <!-- signup form heading -->
+                            <div>
+                                <h6 class="mb-4 text-center login-form-header">
+                                    Sign Up to View Your Profile
+                                </h6>
+                            </div>
+                            <!-- signup email form field  -->
+                            <mat-form-field class="form-group w-100" appearance="outline">
+                                <mat-label>Email</mat-label>
+                                <input type="text" name="email" placeholder="Enter your email" matInput />
+                            </mat-form-field>
+                            <!-- signup mobile number form field  -->
+                            <mat-form-field class="form-group w-100" appearance="outline">
+                                <mat-label>Mobile Number</mat-label>
+                                <input type="text" name="mobileNumber" placeholder="Enter your mobile number"
+                                    matInput />
+                            </mat-form-field>
+                            <!-- signup password form field  -->
+                            <mat-form-field class="form-group w-100" appearance="outline">
+                                <mat-label>Password</mat-label>
+                                <input type="password" name="password" placeholder="Enter your password" matInput />
+                            </mat-form-field>
+
+                            <!-- signup button -->
+                            <button class="btn text-white w-100 login-custom-button" mat-raised-button>Signup</button>
+
+                            <a class="auth-toggle-url" (click)="authToggleScreen()">Already have account? Click
+                                to login</a>
+                        </form>
+                    </ng-container>
+                    <!-- signup form start here -->
+
+                    <!-- login form start here -->
+                    <ng-container *ngIf="formScreen">
+                        <form class="form">
+                            <!-- login form heading -->
+                            <div>
+                                <h6 class="mb-4 text-center login-form-header">
+                                    Login to View Your Profile
+                                </h6>
+                            </div>
+
+                            <!-- login mobile number form field  -->
+                            <mat-form-field class="form-group w-100" appearance="outline">
+                                <mat-label>Mobile Number</mat-label>
+                                <input type="text" name="mobileNumber" placeholder="Enter your mobile number"
+                                    matInput />
+                            </mat-form-field>
+
+                            <!-- login password form field  -->
+                            <mat-form-field class="form-group w-100" appearance="outline">
+                                <mat-label>Password</mat-label>
+                                <input type="password" name="password" placeholder="Enter your password" matInput />
+                            </mat-form-field>
+
+                            <!-- login button -->
+                            <button class="btn text-white w-100 login-custom-button" mat-raised-button>Login</button>
+
+                            <a class="auth-toggle-url" (click)="authToggleScreen()">Don't have account? Click to
+                                signup</a>
+                        </form>
+                    </ng-container>
+                    <!-- login form start here -->
+                </div>
+            </div>
         </div>
-
-        <form class="form">
-            <!-- login form heading -->
-            <div>
-                <h6 class="mb-2 login-form-header">
-                    Sign Up to view your profile
-                </h6>
-            </div>
-            <!-- login phonenumber input  -->
-            <div class="form-group mt-4">
-                <label class="form-label">Mobile Number</label>
-                <input type="text" name="number" placeholder="Enter your mobile number"
-                    class="form-control shadow-none bg-white login-form-mobile-number-input">
-            </div>
-
-            <button type="button" class="btn text-white w-100 login-custom-button">Continue</button>
-        </form>
     </div>
 </div>
