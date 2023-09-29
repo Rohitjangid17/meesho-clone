@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from './auth.service';
+import { Signin } from '../interfaces/data-type';
 
 @Component({
   selector: 'app-auth',
@@ -14,7 +16,8 @@ export class AuthComponent {
   isLoginPassword: boolean = false;
 
   constructor(
-    private _formBuilder: FormBuilder
+    private _formBuilder: FormBuilder,
+    private _authService: AuthService
   ) {
     // signup form group
     this.signupForm = this._formBuilder.group({
@@ -30,22 +33,36 @@ export class AuthComponent {
     })
   }
 
+  // signup/create user 
   signup() {
-    console.log(this.signupForm.value);
+    const userData: Signin = {
+      email: this.signupForm.get("email")?.value,
+      mobileNumber: this.signupForm.get("mobileNumber")?.value,
+      password: this.signupForm.get("password")?.value,
+    }
+    this._authService.userSignin(userData).subscribe((res) => {
+      console.log(res);
+    }, (error) => {
+      console.log(error);
+    })
   }
 
+  // login user
   login() {
     console.log(this.loginForm.value);
   }
 
+  // auth switch screen as signup form and login form
   authToggleScreen() {
     return this.formScreen = this.formScreen ? false : true;
   }
 
+  // toggle signup form password
   toggleSignupPassword() {
     return this.isSignupPassword = this.isSignupPassword ? false : true;
   }
 
+  // toggle login form password
   toggleLoginPassword() {
     return this.isLoginPassword = this.isLoginPassword ? false : true;
   }
