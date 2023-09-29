@@ -17,11 +17,11 @@ export class AuthService {
 
   // signin user create
   userSignin(data: Signin): Observable<Signin> {
-    return this._httpClient.post<Signin>("http://localhost:3000/user", data);
+    return this._httpClient.post<Signin>("http://localhost:3000/users", data);
   }
 
   userLogin(data: Login): Observable<Signin[]> {
-    return this._httpClient.get<Signin[]>("http://localhost:3000/user?mobileNumber=" + data.mobileNumber + "&password=" + data.password)
+    return this._httpClient.get<Signin[]>("http://localhost:3000/users?mobileNumber=" + data.mobileNumber + "&password=" + data.password)
   }
 
   isAuthenticated() {
