@@ -23,6 +23,7 @@ export class AuthComponent implements OnInit {
   ) {
     // signup form group
     this.signupForm = this._formBuilder.group({
+      name: ["", [Validators.required]],
       email: ["", [Validators.required]],
       mobileNumber: ["", [Validators.required]],
       password: ["", [Validators.required]],
@@ -42,6 +43,7 @@ export class AuthComponent implements OnInit {
   // signup/create user 
   signup() {
     const userData: Signin = {
+      name: this.signupForm.get("name")?.value,
       email: this.signupForm.get("email")?.value,
       mobileNumber: this.signupForm.get("mobileNumber")?.value,
       password: this.signupForm.get("password")?.value,
