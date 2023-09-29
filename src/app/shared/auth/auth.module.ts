@@ -5,6 +5,7 @@ import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from "@angular/forms";
 import { CommonModule } from "@angular/common";
 import { MatIconModule } from '@angular/material/icon';
+import { ToastrModule } from 'ngx-toastr';
 
 import { AuthComponent } from "./auth.component";
 
@@ -18,7 +19,8 @@ import { AuthComponent } from "./auth.component";
         MatInputModule,
         CommonModule,
         ReactiveFormsModule,
-        MatIconModule
+        MatIconModule,
+        ToastrModule.forRoot()
     ],
     providers: [],
 })

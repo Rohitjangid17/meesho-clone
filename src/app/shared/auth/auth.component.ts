@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from './auth.service';
 import { Login, Signin } from '../interfaces/data-type';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 // email regular expression
 const emailRegex = "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$";
@@ -22,7 +23,9 @@ export class AuthComponent implements OnInit {
   constructor(
     private _formBuilder: FormBuilder,
     private _authService: AuthService,
-    private _router: Router
+    private _router: Router,
+    private _toastrService: ToastrService,
+    private _changeDetectorRef: ChangeDetectorRef
   ) {
     // signup form group
     this.signupForm = this._formBuilder.group({
@@ -63,11 +66,13 @@ export class AuthComponent implements OnInit {
       password: this.signupForm.get("password")?.value,
     }
     this._authService.userSignin(userData).subscribe((res: Signin) => {
-      console.log('Signup successful', res);
       this._router.navigate(["/home"]);
       localStorage.setItem("user", JSON.stringify(res));
+      this._toastrService.success('Signup Successfully');
+      this._changeDetectorRef.detectChanges();
     }, (error) => {
-      console.log('Signup failed', error);
+      this._toastrService.error('Signup Failed');
+      this._changeDetectorRef.detectChanges();
     })
   }
 
@@ -78,12 +83,14 @@ export class AuthComponent implements OnInit {
       password: this.loginForm.get("password")?.value,
     }
 
-    this._authService.userLogin(userData).subscribe((res) => {
-      console.log('Login successful', res);
-      this._router.navigate(["/home"]);
+    this._authService.userLogin(userData).subscribe((res: Login[]) => {
       localStorage.setItem("user", JSON.stringify(res));
+      this._router.navigate(["/home"]);
+      this._toastrService.success('Login Successfully');
+      this._changeDetectorRef.detectChanges();
     }, (error) => {
-      console.log('Login failed', error);
+      this._toastrService.error('Login Failed');
+      this._changeDetectorRef.detectChanges();
     })
   }
 
