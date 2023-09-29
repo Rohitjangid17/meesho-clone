@@ -3,3 +3,8 @@ export interface Signin {
     mobileNumber: string,
     password: string,
 }
+
+export interface Login {
+    mobileNumber: string,
+    password: string,
+}

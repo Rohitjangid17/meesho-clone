@@ -1,14 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from './auth.service';
-import { Signin } from '../interfaces/data-type';
+import { Login, Signin } from '../interfaces/data-type';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.scss']
 })
-export class AuthComponent {
+export class AuthComponent implements OnInit {
   formScreen: boolean = false;
   signupForm: FormGroup;
   loginForm: FormGroup;
@@ -17,7 +18,8 @@ export class AuthComponent {
 
   constructor(
     private _formBuilder: FormBuilder,
-    private _authService: AuthService
+    private _authService: AuthService,
+    private _router: Router
   ) {
     // signup form group
     this.signupForm = this._formBuilder.group({
@@ -33,6 +35,10 @@ export class AuthComponent {
     })
   }
 
+  ngOnInit(): void {
+    this._authService.isAuthenticated();
+  }
+
   // signup/create user 
   signup() {
     const userData: Signin = {
@@ -40,16 +46,29 @@ export class AuthComponent {
       mobileNumber: this.signupForm.get("mobileNumber")?.value,
       password: this.signupForm.get("password")?.value,
     }
-    this._authService.userSignin(userData).subscribe((res) => {
-      console.log(res);
+    this._authService.userSignin(userData).subscribe((res: Signin) => {
+      console.log('Signup successful', res);
+      this._router.navigate(["/home"]);
+      localStorage.setItem("user", JSON.stringify(res));
     }, (error) => {
-      console.log(error);
+      console.log('Signup failed', error);
     })
   }
 
   // login user
   login() {
-    console.log(this.loginForm.value);
+    const userData: Login = {
+      mobileNumber: this.loginForm.get("mobileNumber")?.value,
+      password: this.loginForm.get("password")?.value,
+    }
+
+    this._authService.userLogin(userData).subscribe((res) => {
+      console.log('Login successful', res);
+      this._router.navigate(["/home"]);
+      localStorage.setItem("user", JSON.stringify(res));
+    }, (error) => {
+      console.log('Login failed', error);
+    })
   }
 
   // auth switch screen as signup form and login form
