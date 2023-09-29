@@ -17,36 +17,52 @@
                                     Sign Up to View Your Profile
                                 </h6>
                             </div>
-
                             <!-- signup name form field  -->
                             <mat-form-field class="form-group w-100" appearance="outline">
                                 <mat-label>Name</mat-label>
                                 <input type="text" name="name" formControlName="name" placeholder="Enter your name"
-                                    matInput />
+                                    oninput="this.value = this.value.replace(/^[0-9]*$/, '')" matInput />
+                                <mat-error *ngIf="signupForm.get('name')?.hasError('required')">
+                                    Name is required*
+                                </mat-error>
                             </mat-form-field>
 
                             <!-- signup email form field  -->
-                            <mat-form-field class="form-group w-100" appearance="outline">
+                            <mat-form-field class=" form-group w-100" appearance="outline">
                                 <mat-label>Email</mat-label>
                                 <input type="text" name="email" formControlName="email" placeholder="Enter your email"
                                     matInput />
+                                <mat-error *ngIf="signupForm.get('email')?.hasError('required')">
+                                    Email is required*
+                                </mat-error>
+                                <mat-error *ngIf="signupForm.get('email')?.hasError('pattern')">
+                                    Email is Invalid*
+                                </mat-error>
                             </mat-form-field>
 
                             <!-- signup mobile number form field  -->
                             <mat-form-field class="form-group w-100" appearance="outline">
                                 <mat-label>Mobile Number</mat-label>
-                                <input type="text" name="mobileNumber" formControlName="mobileNumber"
+                                <input type="text" name="mobileNumber" formControlName="mobileNumber" [maxlength]="10"
+                                    oninput="this.value = this.value.replace(/[^0-9]/g,'')" [minlength]="10"
                                     placeholder="Enter your mobile number" matInput />
+                                <mat-error *ngIf="signupForm.get('mobileNumber')?.hasError('required')">
+                                    Mobile Number is required*
+                                </mat-error>
                             </mat-form-field>
 
                             <!-- signup password form field  -->
                             <mat-form-field class="form-group w-100" appearance="outline">
                                 <mat-label>Password</mat-label>
-                                <input [type]="isSignupPassword ? 'text' : 'password'" name="password"
+                                <input [type]="isSignupPassword ? 'text' : 'password'" name="password" [maxlength]="6"
+                                    oninput="this.value = this.value.replace(/[^0-9]/g,'')" [minlength]="6"
                                     formControlName="password" placeholder="Enter your password" matInput />
                                 <mat-icon (click)="toggleSignupPassword()" style="cursor: pointer;" matSuffix>
                                     {{isSignupPassword ? 'visibility_off' : 'visibility'}}
                                 </mat-icon>
+                                <mat-error *ngIf="signupForm.get('password')?.hasError('required')">
+                                    password is required*
+                                </mat-error>
                             </mat-form-field>
 
                             <!-- signup button -->
@@ -72,18 +88,26 @@
                             <!-- login mobile number form field  -->
                             <mat-form-field class="form-group w-100" appearance="outline">
                                 <mat-label>Mobile Number</mat-label>
-                                <input type="text" name="mobileNumber" formControlName="mobileNumber"
+                                <input type="text" name="mobileNumber" formControlName="mobileNumber" [maxlength]="10"
+                                    oninput="this.value = this.value.replace(/[^0-9]/g,'')" [minlength]="10"
                                     placeholder="Enter your mobile number" matInput />
+                                <mat-error *ngIf="signupForm.get('mobileNumber')?.hasError('required')">
+                                    Mobile Number is required*
+                                </mat-error>
                             </mat-form-field>
 
                             <!-- login password form field  -->
                             <mat-form-field class="form-group w-100" appearance="outline">
                                 <mat-label>Password</mat-label>
-                                <input [type]="isLoginPassword ? 'text' : 'password'" name="password"
+                                <input [type]="isSignupPassword ? 'text' : 'password'" name="password" [maxlength]="6"
+                                    oninput="this.value = this.value.replace(/[^0-9]/g,'')" [minlength]="6"
                                     formControlName="password" placeholder="Enter your password" matInput />
                                 <mat-icon (click)="toggleLoginPassword()" style="cursor: pointer;" matSuffix>
                                     {{isLoginPassword ? 'visibility_off' : 'visibility'}}
                                 </mat-icon>
+                                <mat-error *ngIf="signupForm.get('password')?.hasError('required')">
+                                    Password is required*
+                                </mat-error>
                             </mat-form-field>
 
                             <!-- login button -->

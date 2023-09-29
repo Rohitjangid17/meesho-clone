@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from './auth.service';
 import { Login, Signin } from '../interfaces/data-type';
 import { Router } from '@angular/router';
+
+// email regular expression
+const emailRegex = "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$";
 
 @Component({
   selector: 'app-auth',
@@ -23,21 +26,32 @@ export class AuthComponent implements OnInit {
   ) {
     // signup form group
     this.signupForm = this._formBuilder.group({
-      name: ["", [Validators.required]],
-      email: ["", [Validators.required]],
-      mobileNumber: ["", [Validators.required]],
-      password: ["", [Validators.required]],
+      name: ["", [Validators.required, this.spaceValidator]],
+      email: ["", [Validators.required, Validators.pattern(emailRegex), this.spaceValidator]],
+      mobileNumber: ["", Validators.required],
+      password: ["", Validators.required],
     });
 
     // login form group
     this.loginForm = this._formBuilder.group({
-      mobileNumber: ["", [Validators.required]],
-      password: ["", [Validators.required]],
+      mobileNumber: ["", Validators.required],
+      password: ["", Validators.required],
     })
   }
 
   ngOnInit(): void {
     this._authService.isAuthenticated();
+  }
+
+  // space validator 
+  spaceValidator(control: AbstractControl) {
+    if (control && control.value && !control.value.replace(/\s/g, '').length) {
+      control.setValue('');
+      return { required: true }
+    }
+    else {
+      return null;
+    }
   }
 
   // signup/create user 
