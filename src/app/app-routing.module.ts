@@ -1,18 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './core/guard/auth.guard';
 
 const routes: Routes = [
   // home page router
   {
-    path: "home", loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule)
+    path: "home", loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule), canActivate: [AuthGuard]
   },
   // product page router
   {
-    path: "products", loadChildren: () => import('./modules/products/products.module').then(m => m.ProductsModule)
+    path: "products", loadChildren: () => import('./modules/products/products.module').then(m => m.ProductsModule), canActivate: [AuthGuard]
   },
   // category page router
   {
-    path: "category", loadChildren: () => import('./modules/category/category.module').then(m => m.CategoryModule)
+    path: "category", loadChildren: () => import('./modules/category/category.module').then(m => m.CategoryModule), canActivate: [AuthGuard]
   },
   // signin page default router 
   {
