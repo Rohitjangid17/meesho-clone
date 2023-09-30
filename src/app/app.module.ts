@@ -8,12 +8,14 @@ import { ToastrModule } from 'ngx-toastr';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './layout/header/header.component';
 import { FooterComponent } from './layout/footer/footer.component';
+// import { CustomHeaderComponent } from './core/components/custom-header/custom-header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    // CustomHeaderComponent
   ],
   imports: [
     BrowserModule,
