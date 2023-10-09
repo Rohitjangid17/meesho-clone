@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, EventEmitter } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from './auth.service';
 import { Login, Signin } from '../interfaces/data-type';
@@ -19,6 +19,7 @@ export class AuthComponent implements OnInit {
   loginForm: FormGroup;
   isSignupPassword: boolean = false;
   isLoginPassword: boolean = false;
+  isSigninError = new EventEmitter<boolean>(false);
 
   constructor(
     private _formBuilder: FormBuilder,
@@ -71,7 +72,7 @@ export class AuthComponent implements OnInit {
       this._toastrService.success('Signup Successfully');
       this._changeDetectorRef.detectChanges();
     }, (error) => {
-      this._toastrService.error('Signup Failed');
+      this._toastrService.error("Server Went Wrong");
       this._changeDetectorRef.detectChanges();
     })
   }
@@ -84,14 +85,19 @@ export class AuthComponent implements OnInit {
     }
 
     this._authService.userLogin(userData).subscribe((res: Login[]) => {
-      localStorage.setItem("user", JSON.stringify(res));
-      this._router.navigate(["/home"]);
-      this._toastrService.success('Login Successfully');
-      this._changeDetectorRef.detectChanges();
+      if (res && res.length) {
+        localStorage.setItem("user", JSON.stringify(res));
+        this._router.navigate(["/home"]);
+        this._toastrService.success('Login Successfully');
+        this._changeDetectorRef.detectChanges();
+      } else {
+        this.isSigninError.emit(true);
+        this._toastrService.error("Incorrect Credentials");
+      }
     }, (error) => {
-      this._toastrService.error('Login Failed');
+      this._toastrService.error("Server Went Wrong");
       this._changeDetectorRef.detectChanges();
-    })
+    });
   }
 
   // auth switch screen as signup form and login form
