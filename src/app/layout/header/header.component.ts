@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Signin } from 'src/app/shared/interfaces/data-type';
 
 @Component({
@@ -9,15 +10,23 @@ import { Signin } from 'src/app/shared/interfaces/data-type';
 export class HeaderComponent implements OnInit {
   userName: string = "";
 
-  constructor() {
-  }
+  constructor(
+    private _router: Router
+  ) { }
 
   ngOnInit(): void {
-    let user = localStorage.getItem("user");
 
-    if (user) {
-      this.userName = user && JSON.parse(user)[0].name;
-      console.log(this.userName)
-    }
+    this._router.events.subscribe((res: any) => {
+      if (res.url) {
+        if (localStorage.getItem("user")) {
+          const user = localStorage.getItem("user");
+          const userData = user && JSON.parse(user)[0];
+
+          // get username
+          this.userName = userData.name;
+          console.log(this.userName);
+        }
+      }
+    })
   }
 }
