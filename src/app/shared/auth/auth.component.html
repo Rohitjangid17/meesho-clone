@@ -99,7 +99,7 @@
                             <!-- login password form field  -->
                             <mat-form-field class="form-group w-100" appearance="outline">
                                 <mat-label>Password</mat-label>
-                                <input [type]="isSignupPassword ? 'text' : 'password'" name="password" [maxlength]="6"
+                                <input [type]="isLoginPassword ? 'text' : 'password'" name="password" [maxlength]="6"
                                     oninput="this.value = this.value.replace(/[^0-9]/g,'')" [minlength]="6"
                                     formControlName="password" placeholder="Enter your password" matInput />
                                 <mat-icon (click)="toggleLoginPassword()" style="cursor: pointer;" matSuffix>
