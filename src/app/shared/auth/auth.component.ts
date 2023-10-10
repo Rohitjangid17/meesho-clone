@@ -58,15 +58,15 @@ export class AuthComponent implements OnInit {
     }
   }
 
-  // signup/create user 
-  signup() {
+  // register user 
+  register() {
     const userData: Signin = {
       name: this.signupForm.get("name")?.value,
       email: this.signupForm.get("email")?.value,
       mobileNumber: this.signupForm.get("mobileNumber")?.value,
       password: this.signupForm.get("password")?.value,
     }
-    this._authService.userSignin(userData).subscribe((res: Signin) => {
+    this._authService.userRegister(userData).subscribe((res: Signin) => {
       this._router.navigate(["/home"]);
       localStorage.setItem("user", JSON.stringify(res));
       this._toastrService.success('Signup Successfully');
@@ -78,7 +78,7 @@ export class AuthComponent implements OnInit {
   }
 
   // login user
-  login() {
+  signin() {
     const userData: Login = {
       mobileNumber: this.loginForm.get("mobileNumber")?.value,
       password: this.loginForm.get("password")?.value,

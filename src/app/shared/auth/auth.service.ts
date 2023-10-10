@@ -15,15 +15,17 @@ export class AuthService {
     private _router: Router
   ) { }
 
-  // signin user create
-  userSignin(data: Signin): Observable<Signin> {
+  // user register 
+  userRegister(data: Signin): Observable<Signin> {
     return this._httpClient.post<Signin>("http://localhost:3000/users", data);
   }
 
+  // user login
   userLogin(data: Login): Observable<Signin[]> {
     return this._httpClient.get<Signin[]>("http://localhost:3000/users?mobileNumber=" + data.mobileNumber + "&password=" + data.password)
   }
 
+  // user authenticate
   isAuthenticated() {
     if (localStorage.getItem("user")) {
       this.isLoggedIn.next(true);

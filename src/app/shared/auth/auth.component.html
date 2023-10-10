@@ -10,7 +10,7 @@
 
                     <!-- signup form start here -->
                     <ng-container *ngIf="!formScreen">
-                        <form class="form" [formGroup]="signupForm" (ngSubmit)="signup()">
+                        <form class="form" [formGroup]="signupForm" (ngSubmit)="register()">
                             <!-- signup form heading -->
                             <div>
                                 <h6 class="mb-4 text-center login-form-header">
@@ -77,7 +77,7 @@
 
                     <!-- login form start here -->
                     <ng-container *ngIf="formScreen">
-                        <form class="form" [formGroup]="loginForm" (ngSubmit)="login()">
+                        <form class="form" [formGroup]="loginForm" (ngSubmit)="signin()">
                             <!-- login form heading -->
                             <div>
                                 <h6 class="mb-4 text-center login-form-header">
